@@ -1,0 +1,25 @@
+Programacion
+
+Arquitectura limpias (Arquitectura Hexagonal)
+
+Programacion Orientada Objecto
+- Herencia
+- Composicion
+
+Bases de datos
+- Teorema de CAP
+
+Node.js / Typescript
+
+Express.js
+https://expressjs.com/
+
+node package manager
+
+
+Vamos a montar un pequeño ejemplo un API backend que permita gestionar usuario
+
+middlewares
+
+npm -> Te permite instalar paquetes, remover paquetes y ejecutar scripts
+npx -> 
