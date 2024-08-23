@@ -17,12 +17,13 @@ app.use("/user", userRouter);
 
 // Query Params, params, body
 app.get("/", (req: Request, res: Response) => {
-    res.status(400).send({ hello: "world!!!" });
+    res.status(200).send({ hello: "world!!!" });
 });
 
 app.post("/", (req: Request, res: Response) => {
     res.send({ hello: "desde ruta post" });
 });
+
 
 // GET -> Obtencion de informacion
 

@@ -27,3 +27,11 @@ export const getUserById = async (id: string) => {
         throw new Error("Error could not find the user");
     }
 };
+
+export const deleteById = async (id: string) => {
+    try{
+        return await UserModel.findByIdAndDelete(id);
+    }catch(error){
+        throw new Error("Error could not delete the user");
+    }
+}

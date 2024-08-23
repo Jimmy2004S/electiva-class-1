@@ -1,6 +1,6 @@
 import { Request, Response, Router } from "express";
 import { v4 } from "uuid";
-import { createUser, getAllUsers, getUserById } from "./controller/user.controller";
+import { createUser, getAllUsers, getUserById, deleteById } from './controller/user.controller';
 import { Types } from "mongoose";
 import { schemaValidator } from "../../middleware/schema.middleware";
 import { userSchemaCreate } from "./schemas/user.schema";
@@ -65,5 +65,23 @@ userRouter.patch("/:id", (req: Request, res: Response) => {
         res.status(200).send({ msg: "Actualizado con exito" });
     }
 });
+
+userRouter.delete("/:id", (req: Request, res: Response) =>{
+    try{
+        const id = req.params.id;
+        const user =  getUserById(id);
+        if(!user) {
+            res.status(404).send({
+                msg: "User not found"
+            })
+        }else{
+            deleteById(id)
+            res.status(200).send({ msg: "Eliminado con exito" });
+        }
+    }catch(error){
+        console.log(error);
+    }
+});
+
 
 export { userRouter };
