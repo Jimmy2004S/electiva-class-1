@@ -4,6 +4,7 @@ const name = Joi.string();
 const lastName = Joi.string();
 const age = Joi.number();
 const email = Joi.string().email();
+const password = Joi.string();
 
 // DRY -> Don't repeat yourself
 
@@ -12,7 +13,8 @@ export const userSchemaCreate = Joi.object({
     name: name.required(),
     lastName: lastName.required(),
     age: age.required(),
-    email: email.required()
+    email: email.required(),
+    password: password.required()
 });
 
 // No los necesito todos
@@ -20,5 +22,6 @@ export const userSchemaUpdate = Joi.object({
     name: name,
     lastName: lastName,
     age: age,
-    email: email
+    email: email,
+    password: password
 });

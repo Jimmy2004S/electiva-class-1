@@ -35,3 +35,23 @@ export const deleteById = async (id: string) => {
         throw new Error("Error could not delete the user");
     }
 }
+
+export const login = async (email: string, password: string) => {
+    try{
+        const user  = await UserModel.findOne({email});
+        if(!user){
+            throw new Error("User not found");
+        }
+
+        const match = await user.comparePassword(password);
+
+        if(match){
+            return true
+        }
+
+        return false;
+
+    }catch(error){
+        throw new Error("Error could not login");
+    }
+}

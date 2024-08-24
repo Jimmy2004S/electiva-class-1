@@ -1,6 +1,6 @@
 import { Request, Response, Router } from "express";
 import { v4 } from "uuid";
-import { createUser, getAllUsers, getUserById, deleteById } from './controller/user.controller';
+import { createUser, getAllUsers, getUserById, deleteById, login} from './controller/user.controller';
 import { Types } from "mongoose";
 import { schemaValidator } from "../../middleware/schema.middleware";
 import { userSchemaCreate } from "./schemas/user.schema";
@@ -82,6 +82,28 @@ userRouter.delete("/:id", (req: Request, res: Response) =>{
         console.log(error);
     }
 });
+
+userRouter.post("/login", async (req: Request, res: Response) => {
+    try{
+        const {email, password} = req.body; // Payload -> Carga util de la peticion
+        const match = await login(email, password)
+
+        if(match){
+            res.status(200).send({
+                msg: "Login correcto",
+            })
+        }else{
+            res.status(401).send({
+                msg: "Login incorrecto",
+            })
+        }
+        
+    }catch(error){
+        res.status(500).send({
+            msg: "Error en el login"
+        })
+    }
+})
 
 
 export { userRouter };
